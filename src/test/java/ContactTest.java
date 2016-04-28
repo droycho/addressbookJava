@@ -39,4 +39,11 @@ public class ContactTest {
     Contact testContact = new Contact("John Doe");
     assertEquals(1, testContact.getId());
   }
+
+  @Test
+  public void find_returnsContactWithSameId_secondContact() {
+    Contact firstContact = new Contact("John Doe");
+    Contact secondContact = new Contact("Bob Smith");
+    assertEquals(Contact.find(secondContact.getId()), secondContact);
+  }
 }
