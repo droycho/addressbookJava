@@ -1,18 +1,26 @@
 import java.util.ArrayList;
 
 public class Contact{
-  private String mName;
+  private String mFirstName;
+  private String mLastName;
+  private String mBirthMonth;
   private static ArrayList<Contact> instances = new ArrayList<Contact>();
   private int mId;
 
-  public Contact (String name) {
-    mName = name;
+  public Contact (String firstName, String lastName, String birthMonth) {
+    mFirstName = firstName;
+    mLastName = lastName;
+    mBirthMonth = birthMonth;
     instances.add(this);
     mId = instances.size();
     }
 
   public String getName() {
-    return mName;
+    return mFirstName + " " + mLastName;
+  }
+
+  public String getBirthMonth() {
+    return mBirthMonth;
   }
 
   public static ArrayList<Contact> all() {
