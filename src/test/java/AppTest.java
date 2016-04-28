@@ -46,6 +46,17 @@ public void contactIsCreatedTest() {
   assertThat(pageSource()).contains("Your contact has been saved.");
 }
 
+@Test
+public void contactIsDiplayedTest() {
+  goTo("http://localhost:4567/contacts/new");
+  fill("#firstName").with("John");
+  fill("#lastName").with("Doe");
+  fill("#month").with("January");
+  submit(".btn");
+  click("a", withText("View Contacts"));
+  assertThat(pageSource()).contains("John Doe");
+}
+
 
 
 
