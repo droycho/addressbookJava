@@ -10,7 +10,7 @@ public class EmailTest {
   }
 
   @Test
-  public void getEmailNumber_instantiatesWithEmail_String() {
+  public void getEmail_instantiatesWithEmail_String() {
     Email myEmail = new Email("hello@hi.com", "work");
     assertEquals("hello@hi.com", myEmail.getEmail());
   }
