@@ -35,136 +35,136 @@ public class AppTest extends FluentTest{
    assertThat(pageSource()).contains("Address Book");
  }
 
-@Test
-public void contactIsCreatedTest() {
-  goTo("http://localhost:4567/");
-  click("a", withText("Add a New Contact"));
-  fill("#firstName").with("John");
-  fill("#lastName").with("Doe");
-  fill("#month").with("January");
-  submit(".btn");
-  assertThat(pageSource()).contains("Your contact has been saved.");
-}
+  @Test
+  public void contactIsCreatedTest() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Add a New Contact"));
+    fill("#firstName").with("John");
+    fill("#lastName").with("Doe");
+    fill("#month").with("January");
+    submit(".btn");
+    assertThat(pageSource()).contains("Your contact has been saved.");
+  }
 
-@Test
-public void contactIsDiplayedTest() {
-  goTo("http://localhost:4567/contacts/new");
-  fill("#firstName").with("John");
-  fill("#lastName").with("Doe");
-  fill("#month").with("January");
-  submit(".btn");
-  click("a", withText("View Contacts"));
-  assertThat(pageSource()).contains("John Doe");
-}
+  @Test
+  public void contactIsDiplayedTest() {
+    goTo("http://localhost:4567/contacts/new");
+    fill("#firstName").with("John");
+    fill("#lastName").with("Doe");
+    fill("#month").with("January");
+    submit(".btn");
+    click("a", withText("View Contacts"));
+    assertThat(pageSource()).contains("John Doe");
+  }
 
-@Test
-public void contactShowPageDisplaysContact() {
-  goTo("http://localhost:4567/contacts/new");
-  fill("#firstName").with("John");
-  fill("#lastName").with("Doe");
-  fill("#month").with("January");
-  submit(".btn");
-  click("a", withText("View Contacts"));
-  click("a", withText("John Doe"));
-  assertThat(pageSource()).contains("John Doe");
-}
+  @Test
+  public void contactShowPageDisplaysContact() {
+    goTo("http://localhost:4567/contacts/new");
+    fill("#firstName").with("John");
+    fill("#lastName").with("Doe");
+    fill("#month").with("January");
+    submit(".btn");
+    click("a", withText("View Contacts"));
+    click("a", withText("John Doe"));
+    assertThat(pageSource()).contains("John Doe");
+  }
 
-@Test
-public void contactPhoneFormIsDisplayed() {
-  goTo("http://localhost:4567/contacts/new");
-  fill("#firstName").with("Bob");
-  fill("#lastName").with("Smith");
-  fill("#month").with("February");
-  submit(".btn");
-  click("a", withText("View Contacts"));
-  click("a", withText("Bob Smith"));
-  click("a", withText("Add a new phone number"));
-  assertThat(pageSource()).contains("Add a phone number for Bob Smith");
-}
+  @Test
+  public void contactPhoneFormIsDisplayed() {
+    goTo("http://localhost:4567/contacts/new");
+    fill("#firstName").with("Bob");
+    fill("#lastName").with("Smith");
+    fill("#month").with("February");
+    submit(".btn");
+    click("a", withText("View Contacts"));
+    click("a", withText("Bob Smith"));
+    click("a", withText("Add a new phone number"));
+    assertThat(pageSource()).contains("Add a phone number for Bob Smith");
+  }
 
-@Test
-public void contactPhoneIsAddedAndDisplayed() {
-  goTo("http://localhost:4567/contacts/new");
-  fill("#firstName").with("Bob");
-  fill("#lastName").with("Smith");
-  fill("#month").with("February");
-  submit(".btn");
-  click("a", withText("View Contacts"));
-  click("a", withText("Bob Smith"));
-  click("a", withText("Add a new phone number"));
-  fill("#areaCode").with("619");
-  fill("#number").with("555-5555");
-  fill("#phoneType").with("Home");
-  submit(".btn");
-  click("a", withText("View Contacts"));
-  click("a", withText("Bob Smith"));
-  assertThat(pageSource()).contains("(619)555-5555");
-}
+  @Test
+  public void contactPhoneIsAddedAndDisplayed() {
+    goTo("http://localhost:4567/contacts/new");
+    fill("#firstName").with("Bob");
+    fill("#lastName").with("Smith");
+    fill("#month").with("February");
+    submit(".btn");
+    click("a", withText("View Contacts"));
+    click("a", withText("Bob Smith"));
+    click("a", withText("Add a new phone number"));
+    fill("#areaCode").with("619");
+    fill("#number").with("555-5555");
+    fill("#phoneType").with("Home");
+    submit(".btn");
+    click("a", withText("View Contacts"));
+    click("a", withText("Bob Smith"));
+    assertThat(pageSource()).contains("(619)555-5555");
+  }
 
-@Test
-public void contactEmailFormIsDisplayed() {
-  goTo("http://localhost:4567/contacts/new");
-  fill("#firstName").with("Bob");
-  fill("#lastName").with("Smith");
-  fill("#month").with("February");
-  submit(".btn");
-  click("a", withText("View Contacts"));
-  click("a", withText("Bob Smith"));
-  click("a", withText("Add a new email address"));
-  assertThat(pageSource()).contains("Add an email for Bob Smith");
-}
+  @Test
+  public void contactEmailFormIsDisplayed() {
+    goTo("http://localhost:4567/contacts/new");
+    fill("#firstName").with("Bob");
+    fill("#lastName").with("Smith");
+    fill("#month").with("February");
+    submit(".btn");
+    click("a", withText("View Contacts"));
+    click("a", withText("Bob Smith"));
+    click("a", withText("Add a new email address"));
+    assertThat(pageSource()).contains("Add an email for Bob Smith");
+  }
 
-@Test
-public void contactEmailIsAddedAndDisplayed() {
-  goTo("http://localhost:4567/contacts/new");
-  fill("#firstName").with("Bob");
-  fill("#lastName").with("Smith");
-  fill("#month").with("February");
-  submit(".btn");
-  click("a", withText("View Contacts"));
-  click("a", withText("Bob Smith"));
-  click("a", withText("Add a new email address"));
-  fill("#email").with("hello@hi.com");
-  fill("#emailType").with("Work");
-  submit(".btn");
-  click("a", withText("View Contacts"));
-  click("a", withText("Bob Smith"));
-  assertThat(pageSource()).contains("hello@hi.com");
-}
+  @Test
+  public void contactEmailIsAddedAndDisplayed() {
+    goTo("http://localhost:4567/contacts/new");
+    fill("#firstName").with("Bob");
+    fill("#lastName").with("Smith");
+    fill("#month").with("February");
+    submit(".btn");
+    click("a", withText("View Contacts"));
+    click("a", withText("Bob Smith"));
+    click("a", withText("Add a new email address"));
+    fill("#email").with("hello@hi.com");
+    fill("#emailType").with("Work");
+    submit(".btn");
+    click("a", withText("View Contacts"));
+    click("a", withText("Bob Smith"));
+    assertThat(pageSource()).contains("hello@hi.com");
+  }
 
-@Test
-public void contactMailingFormIsDisplayed() {
-  goTo("http://localhost:4567/contacts/new");
-  fill("#firstName").with("Bob");
-  fill("#lastName").with("Smith");
-  fill("#month").with("February");
-  submit(".btn");
-  click("a", withText("View Contacts"));
-  click("a", withText("Bob Smith"));
-  click("a", withText("Add a new mailing address"));
-  assertThat(pageSource()).contains("Add a mailing address for Bob Smith");
-}
+  @Test
+  public void contactMailingFormIsDisplayed() {
+    goTo("http://localhost:4567/contacts/new");
+    fill("#firstName").with("Bob");
+    fill("#lastName").with("Smith");
+    fill("#month").with("February");
+    submit(".btn");
+    click("a", withText("View Contacts"));
+    click("a", withText("Bob Smith"));
+    click("a", withText("Add a new mailing address"));
+    assertThat(pageSource()).contains("Add a mailing address for Bob Smith");
+  }
 
-@Test
-public void contactMailingIsAddedAndDisplayed() {
-  goTo("http://localhost:4567/contacts/new");
-  fill("#firstName").with("Bob");
-  fill("#lastName").with("Smith");
-  fill("#month").with("February");
-  submit(".btn");
-  click("a", withText("View Contacts"));
-  click("a", withText("Bob Smith"));
-  click("a", withText("Add a new mailing address"));
-  fill("#street").with("123 First Ave");
-  fill("#city").with("Portland");
-  fill("#state").with("OR");
-  fill("#zip").with("97210");
-  fill("#mailingType").with("Home");
-  submit(".btn");
-  click("a", withText("View Contacts"));
-  click("a", withText("Bob Smith"));
-  assertThat(pageSource()).contains("123 First Ave, Portland, OR, 97210");
-}
+  @Test
+  public void contactMailingIsAddedAndDisplayed() {
+    goTo("http://localhost:4567/contacts/new");
+    fill("#firstName").with("Bob");
+    fill("#lastName").with("Smith");
+    fill("#month").with("February");
+    submit(".btn");
+    click("a", withText("View Contacts"));
+    click("a", withText("Bob Smith"));
+    click("a", withText("Add a new mailing address"));
+    fill("#street").with("123 First Ave");
+    fill("#city").with("Portland");
+    fill("#state").with("OR");
+    fill("#zip").with("97210");
+    fill("#mailingType").with("Home");
+    submit(".btn");
+    click("a", withText("View Contacts"));
+    click("a", withText("Bob Smith"));
+    assertThat(pageSource()).contains("123 First Ave, Portland, OR, 97210");
+  }
 
 
 }

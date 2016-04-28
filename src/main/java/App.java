@@ -74,57 +74,57 @@ public class App {
       return new ModelAndView(model, layout);
       }, new VelocityTemplateEngine());
 
-      get("/contacts/:id/emails/new", (request, response) -> {
+    get("/contacts/:id/emails/new", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Contact contact = Contact.find(Integer.parseInt(request.params(":id")));
+      model.put("contact", contact);
+      model.put("template", "templates/contact-emails-form.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/emails", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+
+      Contact contact = Contact.find(Integer.parseInt(request.queryParams("contactId")));
+
+      String email = request.queryParams("email");
+      String emailType = request.queryParams("emailType");
+
+      Email newEmail = new Email(email, emailType);
+
+      contact.addEmail(newEmail);
+
+      model.put("contact", contact);
+      model.put("template", "templates/contact-emails-success.vtl");
+      return new ModelAndView(model, layout);
+      }, new VelocityTemplateEngine());
+
+      get("/contacts/:id/mailings/new", (request, response) -> {
         HashMap<String, Object> model = new HashMap<String, Object>();
         Contact contact = Contact.find(Integer.parseInt(request.params(":id")));
         model.put("contact", contact);
-        model.put("template", "templates/contact-emails-form.vtl");
+        model.put("template", "templates/contact-mailings-form.vtl");
         return new ModelAndView(model, layout);
       }, new VelocityTemplateEngine());
 
-      post("/emails", (request, response) -> {
+      post("/mailings", (request, response) -> {
         HashMap<String, Object> model = new HashMap<String, Object>();
 
         Contact contact = Contact.find(Integer.parseInt(request.queryParams("contactId")));
 
-        String email = request.queryParams("email");
-        String emailType = request.queryParams("emailType");
+        String street = request.queryParams("street");
+        String city = request.queryParams("city");
+        String state = request.queryParams("state");
+        String zip = request.queryParams("zip");
+        String mailingType = request.queryParams("mailingType");
 
-        Email newEmail = new Email(email, emailType);
+        Mailing newMailing = new Mailing(street, city, state, zip, mailingType);
 
-        contact.addEmail(newEmail);
+        contact.addMailing(newMailing);
 
         model.put("contact", contact);
-        model.put("template", "templates/contact-emails-success.vtl");
+        model.put("template", "templates/contact-mailings-success.vtl");
         return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
-
-        get("/contacts/:id/mailings/new", (request, response) -> {
-          HashMap<String, Object> model = new HashMap<String, Object>();
-          Contact contact = Contact.find(Integer.parseInt(request.params(":id")));
-          model.put("contact", contact);
-          model.put("template", "templates/contact-mailings-form.vtl");
-          return new ModelAndView(model, layout);
-        }, new VelocityTemplateEngine());
-
-        post("/mailings", (request, response) -> {
-          HashMap<String, Object> model = new HashMap<String, Object>();
-
-          Contact contact = Contact.find(Integer.parseInt(request.queryParams("contactId")));
-
-          String street = request.queryParams("street");
-          String city = request.queryParams("city");
-          String state = request.queryParams("state");
-          String zip = request.queryParams("zip");
-          String mailingType = request.queryParams("mailingType");
-
-          Mailing newMailing = new Mailing(street, city, state, zip, mailingType);
-
-          contact.addMailing(newMailing);
-
-          model.put("contact", contact);
-          model.put("template", "templates/contact-mailings-success.vtl");
-          return new ModelAndView(model, layout);
-          }, new VelocityTemplateEngine());
   }
 }
