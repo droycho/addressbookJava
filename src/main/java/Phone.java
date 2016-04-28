@@ -3,13 +3,13 @@ import java.util.ArrayList;
 public class Phone {
   private String mAreaCode;
   private String mNumber;
-  private String mType;
+  private String mPhoneType;
   private static ArrayList<Phone> instances = new ArrayList<Phone>();
 
-  public Phone (String areaCode, String number, String type) {
+  public Phone (String areaCode, String number, String phoneType) {
     mAreaCode = areaCode;
     mNumber = number;
-    mType = type;
+    mPhoneType = phoneType;
     instances.add(this);
   }
 
@@ -17,8 +17,8 @@ public class Phone {
     return "(" + mAreaCode + ")" + mNumber;
   }
 
-  public String getType() {
-    return mType;
+  public String getPhoneType() {
+    return mPhoneType;
   }
 
   public static ArrayList<Phone> all() {

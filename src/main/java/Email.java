@@ -2,12 +2,12 @@ import java.util.ArrayList;
 
 public class Email {
   private String mEmail;
-  private String mType;
+  private String mEmailType;
   private static ArrayList<Email> instances = new ArrayList<Email>();
 
-  public Email (String email, String type) {
+  public Email (String email, String emailType) {
     mEmail = email;
-    mType = type;
+    mEmailType = emailType;
     instances.add(this);
   }
 
@@ -15,8 +15,8 @@ public class Email {
     return mEmail;
   }
 
-  public String getType() {
-    return mType;
+  public String getEmailType() {
+    return mEmailType;
   }
 
   public static ArrayList<Email> all() {

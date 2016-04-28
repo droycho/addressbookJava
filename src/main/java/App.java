@@ -63,9 +63,9 @@ public class App {
 
       String areaCode = request.queryParams("areaCode");
       String number = request.queryParams("number");
-      String type = request.queryParams("type");
+      String phoneType = request.queryParams("phoneType");
 
-      Phone newPhone = new Phone(areaCode, number, type);
+      Phone newPhone = new Phone(areaCode, number, phoneType);
 
       contact.addPhone(newPhone);
 
@@ -88,9 +88,9 @@ public class App {
         Contact contact = Contact.find(Integer.parseInt(request.queryParams("contactId")));
 
         String email = request.queryParams("email");
-        String type = request.queryParams("type");
+        String emailType = request.queryParams("emailType");
 
-        Email newEmail = new Email(email, type);
+        Email newEmail = new Email(email, emailType);
 
         contact.addEmail(newEmail);
 
@@ -106,5 +106,25 @@ public class App {
           model.put("template", "templates/contact-mailings-form.vtl");
           return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
+
+        post("/mailings", (request, response) -> {
+          HashMap<String, Object> model = new HashMap<String, Object>();
+
+          Contact contact = Contact.find(Integer.parseInt(request.queryParams("contactId")));
+
+          String street = request.queryParams("street");
+          String city = request.queryParams("city");
+          String state = request.queryParams("state");
+          String zip = request.queryParams("zip");
+          String mailingType = request.queryParams("mailingType");
+
+          Mailing newMailing = new Mailing(street, city, state, zip, mailingType);
+
+          contact.addMailing(newMailing);
+
+          model.put("contact", contact);
+          model.put("template", "templates/contact-mailings-success.vtl");
+          return new ModelAndView(model, layout);
+          }, new VelocityTemplateEngine());
   }
 }

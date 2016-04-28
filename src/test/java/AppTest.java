@@ -94,7 +94,7 @@ public void contactPhoneIsAddedAndDisplayed() {
   click("a", withText("Add a new phone number"));
   fill("#areaCode").with("619");
   fill("#number").with("555-5555");
-  fill("#type").with("Home");
+  fill("#phoneType").with("Home");
   submit(".btn");
   click("a", withText("View Contacts"));
   click("a", withText("Bob Smith"));
@@ -125,7 +125,7 @@ public void contactEmailIsAddedAndDisplayed() {
   click("a", withText("Bob Smith"));
   click("a", withText("Add a new email address"));
   fill("#email").with("hello@hi.com");
-  fill("#type").with("Work");
+  fill("#emailType").with("Work");
   submit(".btn");
   click("a", withText("View Contacts"));
   click("a", withText("Bob Smith"));
@@ -143,6 +143,27 @@ public void contactMailingFormIsDisplayed() {
   click("a", withText("Bob Smith"));
   click("a", withText("Add a new mailing address"));
   assertThat(pageSource()).contains("Add a mailing address for Bob Smith");
+}
+
+@Test
+public void contactMailingIsAddedAndDisplayed() {
+  goTo("http://localhost:4567/contacts/new");
+  fill("#firstName").with("Bob");
+  fill("#lastName").with("Smith");
+  fill("#month").with("February");
+  submit(".btn");
+  click("a", withText("View Contacts"));
+  click("a", withText("Bob Smith"));
+  click("a", withText("Add a new mailing address"));
+  fill("#street").with("123 First Ave");
+  fill("#city").with("Portland");
+  fill("#state").with("OR");
+  fill("#zip").with("97210");
+  fill("#mailingType").with("Home");
+  submit(".btn");
+  click("a", withText("View Contacts"));
+  click("a", withText("Bob Smith"));
+  assertThat(pageSource()).contains("123 First Ave, Portland, OR, 97210");
 }
 
 

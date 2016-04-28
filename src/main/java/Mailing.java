@@ -5,15 +5,15 @@ public class Mailing {
   private String mCity;
   private String mState;
   private String mZip;
-  private String mType;
+  private String mMailingType;
   private static ArrayList<Mailing> instances = new ArrayList<Mailing>();
 
-  public Mailing (String street, String city, String state, String zip, String type) {
+  public Mailing (String street, String city, String state, String zip, String mailingType) {
     mStreetAddress = street;
     mCity = city;
     mState = state;
     mZip = zip;
-    mType = type;
+    mMailingType = mailingType;
     instances.add(this);
   }
 
@@ -21,8 +21,8 @@ public class Mailing {
     return mStreetAddress + ", " + mCity + ", " + mState + ", " + mZip;
   }
 
-  public String getType() {
-    return mType;
+  public String getMailingType() {
+    return mMailingType;
   }
 
   public static ArrayList<Mailing> all() {
