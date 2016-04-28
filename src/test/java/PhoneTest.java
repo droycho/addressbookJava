@@ -14,4 +14,12 @@ public class PhoneTest {
     Phone myPhone = new Phone("916", "365-3065", "cell");
     assertEquals("(916)365-3065", myPhone.getPhoneNumber());
   }
+
+  @Test
+  public void all_returnsAllInstancesOfPhone_true() {
+    Phone firstPhone = new Phone("916", "365-3065", "cell");
+    Phone secondPhone = new Phone("503", "837-3034", "home");
+    assertTrue(Phone.all().contains(firstPhone));
+    assertTrue(Phone.all().contains(secondPhone));
+  }
 }
