@@ -46,4 +46,9 @@ public class ContactTest {
     Contact secondContact = new Contact("Bob Smith");
     assertEquals(Contact.find(secondContact.getId()), secondContact);
   }
+
+  @Test
+  public void find_returnsNullWhenNoContactFound_null() {
+    assertTrue(Contact.find(999) == null);
+  }
 }
