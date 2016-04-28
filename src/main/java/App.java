@@ -15,19 +15,24 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // get("/output", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   model.put("template", "templates/output.vtl");
-    //
-    //   Blank blankList = new Blank(); /
-    //
-    //   String userInputString = request.queryParams("???");
-    //   Integer userInputNumber = Integer.parseInt(userInput);
-    //
-    //   ArrayList myResults = blankList.runBlank(userInputNumber);
-    //
-    //   model.put("result", myResults);
-    //   return new ModelAndView(model, layout);
-    // }, new VelocityTemplateEngine());
+    get("/contacts/new", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/contact-form.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/contacts", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+
+      String firstName = request.queryParams("firstName");
+      String lastName = request.queryParams("lastName");
+      String month = request.queryParams("month");
+      Contact newContact = new Contact(firstName, lastName, month);
+
+      model.put("template", "templates/contact-success.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
   }
 }
