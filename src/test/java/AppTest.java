@@ -132,5 +132,18 @@ public void contactEmailIsAddedAndDisplayed() {
   assertThat(pageSource()).contains("hello@hi.com");
 }
 
+@Test
+public void contactMailingFormIsDisplayed() {
+  goTo("http://localhost:4567/contacts/new");
+  fill("#firstName").with("Bob");
+  fill("#lastName").with("Smith");
+  fill("#month").with("February");
+  submit(".btn");
+  click("a", withText("View Contacts"));
+  click("a", withText("Bob Smith"));
+  click("a", withText("Add a new mailing address"));
+  assertThat(pageSource()).contains("Add a mailing address for Bob Smith");
+}
+
 
 }
