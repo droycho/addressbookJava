@@ -101,14 +101,24 @@ public void contactPhoneIsAddedAndDisplayed() {
   assertThat(pageSource()).contains("(619)555-5555");
 }
 
+@Test
+public void contactEmailFormIsDisplayed() {
+  goTo("http://localhost:4567/contacts/new");
+  fill("#firstName").with("Bob");
+  fill("#lastName").with("Smith");
+  fill("#month").with("February");
+  submit(".btn");
+  click("a", withText("View Contacts"));
+  click("a", withText("Bob Smith"));
+  click("a", withText("Add a new email address"));
+  // fill("#email").with("hello@hi.com");
+  // fill("#type").with("Work");
+  // submit(".btn");
+  assertThat(pageSource()).contains("Add an email for Bob Smith");
+}
 
 
 
-//
-//
-//   @Test
-//   public void runBlank_CheckifPageIsBlank_true(){
-//     Blank ->MAIN CLASS<- myBlank = new Blank();  ->THIS CREATES A INSTANCE THE MAIN CLASS<-
-//     assertEquals(FirstArgument, SecondArgument()) <-METHOD THAT COMPARES 1ST AND 2ND ARGUMENTS->
-//   }
+
+
 }

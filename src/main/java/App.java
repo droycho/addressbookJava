@@ -73,5 +73,15 @@ public class App {
       model.put("template", "templates/contact-phones-success.vtl");
       return new ModelAndView(model, layout);
       }, new VelocityTemplateEngine());
+
+      get("/contacts/:id/emails/new", (request, response) -> {
+        HashMap<String, Object> model = new HashMap<String, Object>();
+        Contact contact = Contact.find(Integer.parseInt(request.params(":id")));
+        model.put("contact", contact);
+        model.put("template", "templates/contact-emails-form.vtl");
+        return new ModelAndView(model, layout);
+      }, new VelocityTemplateEngine());
   }
+
+
 }

@@ -1,0 +1,14 @@
+<h1>Add an email for $contact.getName()</h1>
+
+<form action="/emails" method="post">
+  <input type="hidden" name="contactId" value="$contact.getId()" id="contactId">
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" name="email" id="email" class="form-control">
+    <label for="type">Type</label>
+    <input type="text" name="type" id="type" class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-success">Add Email</button>
+</form>
