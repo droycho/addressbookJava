@@ -21,4 +21,7 @@ public class Phone {
     return instances;
   }
 
+  public static void clear() {
+    instances.clear();
+  }
 }
