@@ -2,11 +2,10 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class ContactTest {
-  // @After
-  // public void tearDown() {
-  //   Category.clear();
-  //   Task.clear();
-// }
+  @After
+  public void tearDown() {
+    Contact.clear();
+  }
 
   @Test
   public void contact_instantiatesCorrectly_true() {
@@ -26,5 +25,12 @@ public class ContactTest {
     Contact secondContact = new Contact("Bob Smith");
     assertTrue(Contact.all().contains(firstContact));
     assertTrue(Contact.all().contains(secondContact));
+  }
+
+  @Test
+  public void clear_emptiesAllContactsFromList_0() {
+    Contact firstContact = new Contact("John Doe");
+    Contact.clear();
+    assertEquals(Contact.all().size(), 0);
   }
 }
