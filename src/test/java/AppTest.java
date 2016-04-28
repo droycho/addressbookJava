@@ -57,7 +57,17 @@ public void contactIsDiplayedTest() {
   assertThat(pageSource()).contains("John Doe");
 }
 
-
+@Test
+public void contactShowPageDisplaysContact() {
+  goTo("http://localhost:4567/contacts/new");
+  fill("#firstName").with("John");
+  fill("#lastName").with("Doe");
+  fill("#month").with("January");
+  submit(".btn");
+  click("a", withText("View Contacts"));
+  click("a", withText("John Doe"));
+  assertThat(pageSource()).contains("John Doe");
+}
 
 
 
