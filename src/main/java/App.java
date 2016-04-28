@@ -48,7 +48,7 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    get("contacts/:id/phones/new", (request, response) -> {
+    get("/contacts/:id/phones/new", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       Contact contact = Contact.find(Integer.parseInt(request.params(":id")));
       model.put("contact", contact);
@@ -56,5 +56,22 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    post("/phones", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+
+      Contact contact = Contact.find(Integer.parseInt(request.queryParams("contactId")));
+
+      String areaCode = request.queryParams("areaCode");
+      String number = request.queryParams("number");
+      String type = request.queryParams("type");
+
+      Phone newPhone = new Phone(areaCode, number, type);
+
+      contact.addPhone(newPhone);
+
+      model.put("contact", contact);
+      model.put("template", "templates/contact-phones-success.vtl");
+      return new ModelAndView(model, layout);
+      }, new VelocityTemplateEngine());
   }
 }

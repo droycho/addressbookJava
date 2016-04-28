@@ -82,19 +82,24 @@ public void contactPhoneFormIsDisplayed() {
   assertThat(pageSource()).contains("Add a phone number for Bob Smith");
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+@Test
+public void contactPhoneIsAddedAndDisplayed() {
+  goTo("http://localhost:4567/contacts/new");
+  fill("#firstName").with("Bob");
+  fill("#lastName").with("Smith");
+  fill("#month").with("February");
+  submit(".btn");
+  click("a", withText("View Contacts"));
+  click("a", withText("Bob Smith"));
+  click("a", withText("Add a new phone number"));
+  fill("#areaCode").with("619");
+  fill("#number").with("555-5555");
+  fill("#type").with("Home");
+  submit(".btn");
+  click("a", withText("View Contacts"));
+  click("a", withText("Bob Smith"));
+  assertThat(pageSource()).contains("(619)555-5555");
+}
 
 
 

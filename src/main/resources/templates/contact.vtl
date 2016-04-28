@@ -1,6 +1,13 @@
 <h1>$contact.getName() details:</h1>
 
 
+<p>Phone Numbers:</p>
+<ul>
+  #foreach($phone in $contact.getPhones())
+    <li>$phone.getPhoneNumber() Type: $phone.getType()</li>
+  #end
+</ul>
+
 <a href="/contacts/$contact.getId()/phones/new">Add a new phone number</a>
 <a href="/contacts/$contact.getId()/emails/new">Add a new email address</a>
 <a href="/contacts/$contact.getId()/mailings/new">Add a new mailing address</a>

@@ -6,6 +6,9 @@ public class Contact{
   private String mBirthMonth;
   private static ArrayList<Contact> instances = new ArrayList<Contact>();
   private int mId;
+  private ArrayList<Phone> mPhones;
+  private ArrayList<Email> mEmails;
+  private ArrayList<Mailing> mMailings;
 
   public Contact (String firstName, String lastName, String birthMonth) {
     mFirstName = firstName;
@@ -13,6 +16,7 @@ public class Contact{
     mBirthMonth = birthMonth;
     instances.add(this);
     mId = instances.size();
+    mPhones = new ArrayList<Phone>();
     }
 
   public String getName() {
@@ -41,5 +45,13 @@ public class Contact{
     } catch (IndexOutOfBoundsException e) {
       return null;
     }
+  }
+
+  public ArrayList<Phone> getPhones() {
+    return mPhones;
+  }
+
+  public void addPhone(Phone phone) {
+    mPhones.add(phone);
   }
  }
