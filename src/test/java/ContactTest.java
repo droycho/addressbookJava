@@ -13,4 +13,10 @@ public class ContactTest {
     Contact testContact = new Contact("John Doe");
     assertEquals(true, testContact instanceof Contact);
   }
+
+  @Test
+  public void getName_contactInstantiatesWithName_JohnDoe() {
+    Contact testContact = new Contact("John Doe");
+    assertEquals("John Doe", testContact.getName());
+  }
 }
