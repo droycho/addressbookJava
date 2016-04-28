@@ -17,6 +17,10 @@ public class Phone {
     return "(" + mAreaCode + ")" + mNumber;
   }
 
+  public String getType() {
+    return mType;
+  }
+
   public static ArrayList<Phone> all() {
     return instances;
   }
