@@ -19,4 +19,12 @@ public class ContactTest {
     Contact testContact = new Contact("John Doe");
     assertEquals("John Doe", testContact.getName());
   }
+
+  @Test
+  public void all_returnsAllInstancesOfContact_true() {
+    Contact firstContact = new Contact("John Doe");
+    Contact secondContact = new Contact("Bob Smith");
+    assertTrue(Contact.all().contains(firstContact));
+    assertTrue(Contact.all().contains(secondContact));
+  }
 }
