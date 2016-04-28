@@ -11,5 +11,8 @@ public class Phone {
     mType = type;
   }
 
+  public String getPhoneNumber() {
+    return "(" + mAreaCode + ")" + mNumber;
+  }
 
 }
