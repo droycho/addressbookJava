@@ -69,6 +69,19 @@ public void contactShowPageDisplaysContact() {
   assertThat(pageSource()).contains("John Doe");
 }
 
+@Test
+public void contactPhoneFormIsDisplayed() {
+  goTo("http://localhost:4567/contacts/new");
+  fill("#firstName").with("Bob");
+  fill("#lastName").with("Smith");
+  fill("#month").with("February");
+  submit(".btn");
+  click("a", withText("View Contacts"));
+  click("a", withText("Bob Smith"));
+  click("a", withText("Add a new phone number"));
+  assertThat(pageSource()).contains("Add a phone number for Bob Smith");
+}
+
 
 
 
