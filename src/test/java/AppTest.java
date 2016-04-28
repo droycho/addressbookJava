@@ -111,14 +111,26 @@ public void contactEmailFormIsDisplayed() {
   click("a", withText("View Contacts"));
   click("a", withText("Bob Smith"));
   click("a", withText("Add a new email address"));
-  // fill("#email").with("hello@hi.com");
-  // fill("#type").with("Work");
-  // submit(".btn");
   assertThat(pageSource()).contains("Add an email for Bob Smith");
 }
 
-
-
+@Test
+public void contactEmailIsAddedAndDisplayed() {
+  goTo("http://localhost:4567/contacts/new");
+  fill("#firstName").with("Bob");
+  fill("#lastName").with("Smith");
+  fill("#month").with("February");
+  submit(".btn");
+  click("a", withText("View Contacts"));
+  click("a", withText("Bob Smith"));
+  click("a", withText("Add a new email address"));
+  fill("#email").with("hello@hi.com");
+  fill("#type").with("Work");
+  submit(".btn");
+  click("a", withText("View Contacts"));
+  click("a", withText("Bob Smith"));
+  assertThat(pageSource()).contains("hello@hi.com");
+}
 
 
 }

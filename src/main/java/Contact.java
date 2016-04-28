@@ -17,6 +17,7 @@ public class Contact{
     instances.add(this);
     mId = instances.size();
     mPhones = new ArrayList<Phone>();
+    mEmails = new ArrayList<Email>();
     }
 
   public String getName() {
@@ -53,5 +54,13 @@ public class Contact{
 
   public void addPhone(Phone phone) {
     mPhones.add(phone);
+  }
+
+  public ArrayList<Email> getEmails() {
+    return mEmails;
+  }
+
+  public void addEmail(Email email) {
+    mEmails.add(email);
   }
  }

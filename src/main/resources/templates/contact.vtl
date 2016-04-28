@@ -7,6 +7,12 @@
     <li>$phone.getPhoneNumber() Type: $phone.getType()</li>
   #end
 </ul>
+<p>Emails:</p>
+<ul>
+  #foreach($email in $contact.getEmails())
+    <li>$email.getEmail() Type: $email.getType()</li>
+  #end
+</ul>
 
 <a href="/contacts/$contact.getId()/phones/new">Add a new phone number</a>
 <a href="/contacts/$contact.getId()/emails/new">Add a new email address</a>
